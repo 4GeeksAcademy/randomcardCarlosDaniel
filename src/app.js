@@ -5,7 +5,7 @@ import "./style.css";
 import "./assets/img/rigo-baby.jpg";
 import "./assets/img/4geeks.ico";
 
-window.onload = function() {
+window.onload = function generarCarta() {
   let palos = ["♥", "♦", "♠", "♣"];
   let valores = [
     "A",
@@ -33,11 +33,18 @@ window.onload = function() {
   palo2.innerText = palo;
   valorCentro.innerText = valor;
 
-  const cartaElement = document.getElementById("carta");
-  cartaElement.classList.remove(...cartaElement.classList); // Remove existing classes
-  cartaElement.classList.add("card", palo); // Add new classes
-  cartaElement.textContent = carta;
-
-  if (palo1 === "♦" || palo2 === "♥") {
+  if (palo === "♦" || palo === "♥") {
+    palo1.classList.remove("rojo", "negro"); // Remove existing classes
+    palo1.classList.add("rojo");
+    palo2.classList.remove("rojo", "negro");
+    palo2.classList.add("rojo");
+  } else {
+    palo1.classList.remove("rojo", "negro");
+    palo1.classList.add("negro");
+    palo2.classList.remove("rojo", "negro");
+    palo2.classList.add("negro");
   }
+
+  const button = document.getElementById("generarCarta");
+  button.addEventListener("click", generarCarta);
 };
